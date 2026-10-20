@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Lesson 15 · 员工入职编排引擎 | n8n 实战课</title>
+<style>
+:root{--navy:#1a2744;--gold:#f0b429;--bg:#f6f7fb;--card:#fff;--txt:#2b3450}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:"Segoe UI","Microsoft YaHei",sans-serif;background:var(--bg);color:var(--txt);line-height:1.7}
+.hero{background:linear-gradient(135deg,#1a2744 0%,#2d3f6b 100%);color:#fff;padding:72px 24px;text-align:center}
+.badge{display:inline-block;background:var(--gold);color:var(--navy);font-weight:700;padding:4px 16px;border-radius:999px;font-size:14px;margin-bottom:18px}
+.hero h1{font-size:34px;margin-bottom:14px}
+.hero p{max-width:720px;margin:0 auto;opacity:.88}
+.wrap{max-width:880px;margin:0 auto;padding:48px 24px}
+.card{background:var(--card);border-radius:14px;padding:28px 30px;margin-bottom:24px;box-shadow:0 2px 10px rgba(26,39,68,.06)}
+.card h2{font-size:21px;color:var(--navy);margin-bottom:12px}
+.flow{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin:14px 0}
+.flow span{background:#eef1f8;border:1px solid #d7dded;border-radius:8px;padding:6px 12px;font-size:14px}
+.flow b{color:var(--gold)}
+table{width:100%;border-collapse:collapse;font-size:14.5px}
+th,td{border:1px solid #e3e7f0;padding:8px 10px;text-align:left}
+th{background:#eef1f8}
+ul{padding-left:20px}
+.cta{text-align:center;padding:40px 24px 64px}
+.cta a{display:inline-block;background:var(--gold);color:var(--navy);font-weight:700;font-size:18px;padding:14px 42px;border-radius:10px;text-decoration:none}
+code{background:#eef1f8;padding:1px 6px;border-radius:4px;font-size:13px}
+</style>
+</head>
+<body>
+<div class="hero">
+  <div class="badge">n8n 实战课 · Lesson 15</div>
+  <h1>员工入职编排引擎</h1>
+  <p>一条 Webhook 打通 HR / IAM / IT / SaaS 四个系统：自动建档、开号、派单、开应用，三态报告动态回 201 / 207 / 502。<b>零凭证、零费用、开箱即跑。</b></p>
+</div>
+<div class="wrap">
+  <div class="card">
+    <h2>🔧 它做什么</h2>
+    <div class="flow">
+      <span>POST 新员工资料</span><b>→</b><span>字段校验</span><b>→</b><span>HR 建档</span><b>→</b><span>IAM 开号</span><b>→</b><span>IT 派单</span><b>→</b><span>SaaS 开应用</span><b>→</b><span>三态报告</span>
+    </div>
+    <p>单个系统挂了不炸全链：其余照常执行，最后如实回 <code>207 partial</code>。调用方传 <code>simulateStatus: 500</code> 即可演练故障场景。</p>
+  </div>
+  <div class="card">
+    <h2>✅ 实测验证（L2 三关全绿）</h2>
+    <table>
+      <tr><th>关卡</th><th>结果</th></tr>
+      <tr><td>A · 单元测试</td><td>56/56 断言通过（6 个 Code 节点全移植）</td></tr>
+      <tr><td>B · mock 全链</td><td>6 场景 39/39 通过（201/207/502 全覆盖）</td></tr>
+      <tr><td>C · 真跑</td><td>httpbin 真链路 3/3：201 completed / 207 partial / 缺陷复现</td></tr>
+    </table>
+  </div>
+  <div class="card">
+    <h2>⚠️ 独家发现：原版模板有个缺陷</h2>
+    <p>字段校验失败（缺姓名/邮箱非法）时流程<b>不会停下</b>，照样调完四个系统再回 201。课程里带你用三处改动修复（加 If 短路回 422），这正是企业级编排和玩具流水线的分水岭。</p>
+  </div>
+  <div class="card">
+    <h2>🎁 你将获得</h2>
+    <ul>
+      <li>原版 + 加固版两份可直导入的工作流 JSON</li>
+      <li>20 节点逐段架构拆解文档</li>
+      <li>95 条断言的完整验证记录（可直接复刻）</li>
+      <li>生产化加固清单（幂等 / 补偿 Saga / 并行化 / 审计）</li>
+      <li>5 个递进练习（含并行化、补偿机制挑战题）</li>
+    </ul>
+  </div>
+</div>
+<div class="cta">
+  <a href="https://github.com/xinchun575924529/n8n-lesson-15-employee-onboarding-orchestrator">免费获取完整课程包 →</a>
+</div>
+</body>
+</html>
